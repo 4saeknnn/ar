@@ -1,69 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AR Organ Tubuh Interaktif</title>
+    <title>AR.js Simple Test</title>
+    <!-- A-Frame -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-    <!-- Komponen animasi -->
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-    <style>
-      #infoBox {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        background: rgba(255,255,255,0.8);
-        padding: 10px;
-        border-radius: 8px;
-        display: none;
-      }
-    </style>
+    <!-- AR.js -->
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
   </head>
 
   <body style="margin: 0; overflow: hidden;">
-    <div id="infoBox"></div>
-
     <a-scene embedded arjs>
-      <!-- Marker Hiro = Jantung -->
+      <!-- Marker Hiro -->
       <a-marker preset="hiro">
-        <a-entity id="heart"
-          gltf-model="url(jantung_animasi.glb)"
-          scale="0.5 0.5 0.5"
-          animation-mixer
-          class="clickable">
-        </a-entity>
-      </a-marker>
-
-      <!-- Marker Kanji = Paru-paru -->
-      <a-marker preset="kanji">
-        <a-entity id="lung"
-          gltf-model="url(paru_paru.glb)"
-          scale="0.5 0.5 0.5"
-          class="clickable">
-        </a-entity>
+        <!-- Kotak merah -->
+        <a-box position="0 0.5 0" material="color: red;"></a-box>
       </a-marker>
 
       <!-- Kamera -->
       <a-entity camera></a-entity>
     </a-scene>
-
-    <script>
-      // Tangkap organ yang diklik
-      document.querySelectorAll('.clickable').forEach(entity => {
-        entity.addEventListener('click', function (evt) {
-          const id = evt.target.id;
-          let info = '';
-
-          if (id === 'heart') {
-            info = '<b>Jantung</b><br>Organ pemompa darah ke seluruh tubuh.';
-          } else if (id === 'lung') {
-            info = '<b>Paru-Paru</b><br>Berfungsi untuk pertukaran oksigen dan karbon dioksida.';
-          }
-
-          const infoBox = document.getElementById('infoBox');
-          infoBox.innerHTML = info;
-          infoBox.style.display = 'block';
-        });
-      });
-    </script>
   </body>
 </html>
