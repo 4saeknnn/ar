@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AR Jantung - AR.js</title>
+    <title>AR Jantung 3D - AR.js</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   </head>
-
-  <body style="margin: 0; overflow: hidden;">
+  <body style="margin:0; overflow:hidden;">
     <a-scene embedded arjs="sourceType: webcam;">
-      <!-- Marker Hiro -->
       <a-marker preset="hiro">
-        <!-- Model Jantung (contoh: box merah) -->
-        <a-box position="0 0.5 0" material="color: red;"></a-box>
-
+        <!-- Model 3D Jantung GLB -->
+        <a-entity
+          gltf-model="url(model/jantung.glb)"
+          scale="0.5 0.5 0.5"
+          position="0 0 0">
+        </a-entity>
         <!-- Teks Keterangan -->
-        <a-entity 
-          position="0 1.2 0" 
+        <a-entity
+          position="0 1.2 0"
           text="value: Ini adalah Jantung Manusia; color: black; align: center;">
         </a-entity>
       </a-marker>
-
-      <!-- Kamera -->
       <a-entity camera></a-entity>
     </a-scene>
   </body>
