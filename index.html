@@ -4,34 +4,54 @@
     <title>AR Jantung 3D - AR.js</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script>
+      // Fungsi untuk menampilkan dan menyembunyikan deskripsi
+      AFRAME.registerComponent('marker-events', {
+        init: function () {
+          var marker = this.el;
+          var deskripsi = document.querySelector('#deskripsi');
+
+          marker.addEventListener('markerFound', function () {
+            deskripsi.setAttribute('visible', true);
+          });
+
+          marker.addEventListener('markerLost', function () {
+            deskripsi.setAttribute('visible', false);
+          });
+        }
+      });
+    </script>
   </head>
   <body style="margin:0; overflow:hidden;">
     <a-scene embedded arjs="sourceType: webcam;">
       
-      <a-marker preset="hiro">
-        <!-- Model 3D Jantung GLB -->
+      <!-- Marker Hiro dengan event -->
+      <a-marker preset="hiro" marker-events>
+        <!-- Model Jantung -->
         <a-entity
           gltf-model="url(model/jantung.glb)"
-          scale="25.0 25.0 25.0"
+          scale="1.5 1.5 1.5"
           position="0 0 0">
         </a-entity>
 
-        <!-- Teks Judul -->
+        <!-- Judul -->
         <a-entity
           position="0 1.5 0"
           text="value: Jantung Manusia; color: red; align: center; width: 3;">
         </a-entity>
-
-        <!-- Deskripsi Jantung -->
-        <a-entity
-          position="0 -0.8 -1.5"
-          text="value: Jantung adalah organ vital yang memompa darah ke seluruh tubuh, menyediakan oksigen dan nutrisi. Jantung terdiri dari empat ruang utama: dua atrium dan dua ventrikel.; 
-                color: black; 
-                align: center; 
-                wrapCount: 40; 
-                width: 3;">
-        </a-entity>
       </a-marker>
+
+      <!-- Deskripsi (di posisi tetap bawah, tidak ikut kamera) -->
+      <a-entity
+        id="deskripsi"
+        position="0 -1.5 -3"
+        visible="false"
+        text="value: Jantung adalah organ vital yang memompa darah ke seluruh tubuh. Ini memastikan distribusi oksigen dan nutrisi secara efisien.; 
+              color: white; 
+              align: center; 
+              wrapCount: 50; 
+              width: 4;">
+      </a-entity>
 
       <a-entity camera></a-entity>
     </a-scene>
