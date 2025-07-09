@@ -7,19 +7,32 @@
   </head>
   <body style="margin:0; overflow:hidden;">
     <a-scene embedded arjs="sourceType: webcam;">
+      
       <a-marker preset="hiro">
         <!-- Model 3D Jantung GLB -->
         <a-entity
           gltf-model="url(model/jantung.glb)"
-          scale="30.0 30.0 30.0"
+          scale="1.5 1.5 1.5"
           position="0 0 0">
         </a-entity>
-        <!-- Teks Keterangan -->
+
+        <!-- Teks Judul -->
+        <a-entity
+          position="0 1.5 0"
+          text="value: Jantung Manusia; color: red; align: center; width: 3;">
+        </a-entity>
+
+        <!-- Deskripsi Jantung -->
         <a-entity
           position="0 1.2 0"
-          text="value: Ini adalah Jantung Manusia; color: black; align: center;">
+          text="value: Jantung adalah organ vital yang memompa darah ke seluruh tubuh, menyediakan oksigen dan nutrisi. Jantung terdiri dari empat ruang utama: dua atrium dan dua ventrikel.; 
+                color: black; 
+                align: center; 
+                wrapCount: 40; 
+                width: 3;">
         </a-entity>
       </a-marker>
+
       <a-entity camera></a-entity>
     </a-scene>
   </body>
